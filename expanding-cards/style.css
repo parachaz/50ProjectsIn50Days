@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
+#global rules
+
+*{
+    box-sizing: border-box; 
+    /* set box-sizing to boder-box, so that if we add any padding or any border on to an element, it #doesn't affect the width of it  */
+}
+body{
+    font-family: 'Muli', sans-serif;
+    display: flex; /*to center of everything*/
+    align-items: center; /*Align items horizontally*/
+    justify-content: center; /*Center align vertically*/
+    height: 100vh; /*Without height justify-content won't work 100vh means take entire height of the viewport*/
+    overflow: hidden; /*Don't display scroll bar by default*/
+    margin:0;
+}
+
+.container{
+    display:flex; /*to put all elements in a row*/
+    /*flex-direction: column;*//*this would put cards in a column*/
+    width: 90vw; /*take 90 slices (90%) of the view port width*/
+}
+
+.panel{
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh;
+    border-radius: 50px; /*rounded corners*/
+    color: #fff;
+    cursor: pointer;
+    flex: 0.5;
+    margin:10px;
+    position: relative; /*We want h3 in this div to have absolute position so this parent needs to have the relative position*/
+ 
+     transition: flex 0.7s ease-in;
+}
+
+.panel h3{
+    font-size: 24px;
+    position: absolute;
+    bottom:20px;
+    left:20px;
+    margin:0;
+    opacity: 0; /*hide the h3 until the panel is active*/
+}
+
+.panel.active{
+    flex:5;
+
+}
+
+.panel.active h3{
+    opacity:1;
+    transition: opacity 0.3s ease-in;
+}
+/*use media queries to control size and number of cards to display*/
+@media(max-width:480px){ /*On smaller screens use entire width*
+    .container{
+        width: 100vw;
+    }
+    /*hide 4th and 5th cards on smaller screens*/
+    .panel:nth-of-type(4),
+    .panel:nth-of-type(5){
+        display: none;
+    }
+}
